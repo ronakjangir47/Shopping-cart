@@ -4,9 +4,8 @@ describe "ProductsPages" do
   describe "List Pages" do
   	
   	before{ visit products_path }
-    after(:all) { Product.delete_all }
-		subject { page }
-  	let!(:product) { Product.first }
+    subject { page }
+  	let!(:product) { FactoryGirl.create(:product) }
   	
   	it { should have_selector('title', text: 'All Products')}
   	it { should have_selector('h1', text: "products") }

@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Shopping Cart | <%= yield(:title) %></title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body class='<%= controller.controller_name %>' >
-
-<%= yield %>
-
-</body>
+	<head>
+	  <title>Pragprog Books Online Store | <%= yield(:title) %></title>
+	  <%= stylesheet_link_tag    "application", :media => "all" %>
+	  <%= javascript_include_tag "application" %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body class='<%= controller.controller_name %>' >
+		<div id="banner">
+			<%= image_tag("logo.png") %>
+			 Pragmatic Bookshelf
+		</div>
+		<div id="columns">
+			<div id="side">
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Questions</a></li>
+					<li><a href="#">News</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+				<hr/>
+				<span id="time">
+					<%= Time.now.strftime('%I:%M %p') %>	
+				</span>
+			</div>
+			<div id="main">
+					<%= yield %>
+			</div>
+		</div>
+	</body>
 </html>
