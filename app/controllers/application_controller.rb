@@ -12,8 +12,7 @@ class ApplicationController < ActionController::Base
   end	
     
   def destroy_cart
-  	current_cart.destroy
-  	session[:cart] = nil
+  	current_cart.line_items.delete_all
   end
 
 end
