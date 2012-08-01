@@ -1,7 +1,8 @@
 class CartsController < ApplicationController
 	
 	def show
-		@line_items = current_cart.line_items.includes(:product).all
+		@cart = current_cart
+		@line_items = @cart.line_items.includes(:product).all
 	end
 
 	def destroy
