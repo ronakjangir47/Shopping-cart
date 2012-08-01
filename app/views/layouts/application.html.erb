@@ -10,11 +10,16 @@
 		<div id="banner">
 			<%= image_tag("logo.png") %>
 			 Pragmatic Bookshelf
+			 <% if session[:counter] >5 %>
+				 <div id="visit_count">
+				 	Catalog accessed <%= pluralize(session[:counter],'time') %>
+				 </div>
+			 <% end %>
 		</div>
 		<div id="columns">
 			<div id="side">
 				<ul>
-					<li><a href="#">Home</a></li>
+					<li><%= link_to 'Home',root_path %> </li>
 					<li><a href="#">Questions</a></li>
 					<li><a href="#">News</a></li>
 					<li><a href="#">Contact</a></li>

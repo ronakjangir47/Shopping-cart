@@ -2,7 +2,11 @@ ShoppingCart::Application.routes.draw do
   get "store/index"
 
   resources :products
-  root to: "store#index", as: "store"
+  root to: "store#index"
+
+  resources :line_items, only: [:create, :destroy]
+
+  resources :carts
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
