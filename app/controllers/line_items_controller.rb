@@ -13,6 +13,6 @@ class LineItemsController < ApplicationController
 				format.html { redirect_to root_path,
 					notice: @line_item.errors }
 	  	end		
+	  end
 	end
-	
 end
