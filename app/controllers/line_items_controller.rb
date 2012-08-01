@@ -8,15 +8,11 @@ class LineItemsController < ApplicationController
 		respond_to do |format|
 			if @line_item.save
 				session[:counter] = 0
-				format.html { redirect_to cart_path(@cart),
-					notice: "List Item was successfully Created." }
+				format.html { redirect_to cart_path(@cart) }
 			else
 				format.html { redirect_to root_path,
 					notice: @line_item.errors }
 	  	end		
-	  	
 	end
-		rescue ActiveRecord::RecordNotUnique
-				redirect_to cart_path(@cart), notice: "Item Already Exist"
-			end
+	
 end

@@ -10,4 +10,10 @@ class ApplicationController < ActionController::Base
   		session[:cart_id] = cart.id
   		cart
   end	
+    
+  def destroy_cart
+  	current_cart.destroy
+  	session[:cart] = nil
+  end
+
 end
