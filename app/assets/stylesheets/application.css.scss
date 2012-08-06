@@ -54,7 +54,7 @@
  	{
  		float: left;
  		padding: 1em 2em;
- 		width: 13em;
+ 		width: 15em;
 		background: #141;
 		min-height: 400px;
 		ul 
@@ -73,6 +73,19 @@
  		#time
  		{
  			color: #bfb;
+ 		}
+ 		#cart 
+ 		{
+ 			font-size : smaller;
+ 			color : white;
+
+ 			table 
+ 			{
+				border-top:
+				1px dotted #595;
+				border-bottom: 1px dotted #595;
+				margin-bottom: 10px;
+			}
  		}
  	}
  }

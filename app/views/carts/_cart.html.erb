@@ -1,0 +1,15 @@
+<% if @cart %>
+	<% if !@cart.line_items.empty? %>
+		Your Cart
+		<table width="100%" >
+			
+			<%= render(@cart.line_items) %>
+			<tr class="total_line">
+				<td colspan="2">Total</td>
+				<td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
+			  
+			</tr>
+		</table>
+		<%= button_to 'Empty Cart', @cart, method: :delete,  data:{ confirm: "Are you Sure!"}, remote: true %>
+	<% end %>
+<% end %>

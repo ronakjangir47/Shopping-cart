@@ -6,7 +6,12 @@ class CartsController < ApplicationController
 	end
 
 	def destroy
-		destroy_cart
-		redirect_to cart_path(current_cart), notice: 'Your Cart is Currently Empty!'
+		current_cart.line_items.delete_all
+		@cart = current_cart
+		respond_to do |format|
+			format.html{redirect_to cart_path(current_cart), notice: 'Your Cart is Currently Empty!'}
+			format.js 
+		end
 	end
+
 end
