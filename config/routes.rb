@@ -7,6 +7,8 @@ ShoppingCart::Application.routes.draw do
   resources :line_items, only: [:create, :destroy]
 
   resources :carts
+
+  resources :orders
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
