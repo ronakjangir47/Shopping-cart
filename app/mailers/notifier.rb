@@ -8,7 +8,7 @@ class Notifier < ActionMailer::Base
   #
   def order_received(order)
     @order = order
-    @send_mail = true
+    @remove_item_drop = true
     mail to: order.email, subject: "Order Confirmation"
   end
 

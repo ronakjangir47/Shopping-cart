@@ -1,8 +1,4 @@
 ShoppingCart::Application.routes.draw do
-  get "admin/index"
-
-  get "store/index"
-
   resources :products do
     get :who_bought, on: :member
   end
