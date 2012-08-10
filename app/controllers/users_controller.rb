@@ -37,4 +37,15 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @user = User.find(params[:id])
+    begin
+      @user.destroy    
+      message = "User #{@user.name} deleted" 
+    rescue Exception => e
+      message = e.message
+    end
+    redirect_to users_path, notice: message
+  end
 end

@@ -1,0 +1,20 @@
+<h1>Order Details</h1>
+
+<table>
+  <tr>
+    <td colspan="2">Customer Name:</td>
+    <td colspan="2"><%= @order.name %>
+  </tr>
+  <tr>
+    <td colspan="2">Customer Email:</td>
+    <td colspan="2"><%= @order.email %></td>
+  </tr> 
+  <tr>
+    <td colspan="2">Customer Address:</td>
+    <td colspan="2"><%= @order.address %></td>
+  </tr>
+  <tr>
+    <td colspan="4"><hr/></td>
+  </tr>
+  <%= render @order.line_items, delete_line_items:  false %>
+</table>

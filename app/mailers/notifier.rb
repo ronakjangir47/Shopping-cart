@@ -19,7 +19,7 @@ class Notifier < ActionMailer::Base
   #
   def order_shipped(order)
     @order = order
-    @send_mail = true
+    @remove_item_drop = true
     mail to: order.email, subject: "Order Shipped"
   end
 end

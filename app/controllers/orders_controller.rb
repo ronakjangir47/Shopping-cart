@@ -28,4 +28,14 @@ class OrdersController < ApplicationController
 	def index
 		@orders = Order.paginate :page=>params[:page], :order=>'created_at desc',:per_page => 10
 	end
+
+	def destroy
+		Order.find(params[:id]).destroy
+		redirect_to orders_path, notice: "Order deleted Successfully!"
+	end
+
+	def show
+		@remove_item_drop = true
+		@order = Order.find(params[:id])
+	end
 end

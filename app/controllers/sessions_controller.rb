@@ -5,9 +5,14 @@ class SessionsController < ApplicationController
 
   end
   def create 
-    if user = User.authenticate(params[:name], params[:password])    
+    if (user = User.authenticate(params[:name], params[:password])) || User.count.zero? 
+      message = "Welcome Admin"
+      unless user  
+        user = User.create(name: 'fake', password: 'fake', password_confirmation: 'fake') 
+        message = "Your user name and password both are 'fake' change them imidiately! "
+      end
       session[:user_id] = user.id
-      redirect_to admin_path
+      redirect_to admin_path, notice: message
     else
       redirect_to login_path, :alert => "Invalid User/password combination" 
     end
