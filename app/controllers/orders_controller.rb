@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+	skip_before_filter :authorize, :only => [:new, :create]
+
 	def new
 		@cart = current_cart
 		if @cart.line_items.empty?
@@ -16,10 +18,14 @@ class OrdersController < ApplicationController
 		if @order.save
 			Cart.destroy(session[:cart_id])
 			session[:cart_id] = nil
+			Notifier.order_received(@order).deliver
 			redirect_to root_path, notice: 'Thank you for your Order' 
 		else
 			render 'new'
 		end
 	end
 
+	def index
+		@orders = Order.paginate :page=>params[:page], :order=>'created_at desc',:per_page => 10
+	end
 end

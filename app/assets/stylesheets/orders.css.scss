@@ -34,3 +34,21 @@
 {
 	margin: 0.5em 0;
 }
+
+.orders-table
+{
+	width:100%;
+	border:solid 1px #141;
+	th
+	{
+		background-color: #9c9;
+		border-top:solid 1px #141;
+		border-right:solid 1px #141;
+	}
+	td
+	{
+		border-top:solid 1px #141;
+		border-right:solid 1px #141;
+		padding:3px;
+	}
+}

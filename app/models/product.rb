@@ -10,6 +10,8 @@ class Product < ActiveRecord::Base
 
   has_many :lineItems
 
+  has_many :orders, through: :lineItems
+
   before_destroy :ensure_not_refrenced_by_any_listItem
 
   def ensure_not_refrenced_by_any_listItem

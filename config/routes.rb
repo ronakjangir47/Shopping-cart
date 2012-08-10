@@ -1,7 +1,11 @@
 ShoppingCart::Application.routes.draw do
+  get "admin/index"
+
   get "store/index"
 
-  resources :products
+  resources :products do
+    get :who_bought, on: :member
+  end
   root to: "store#index"
 
   resources :line_items, only: [:create, :destroy]
@@ -9,6 +13,17 @@ ShoppingCart::Application.routes.draw do
   resources :carts
 
   resources :orders
+
+  resources :users
+
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+  match 'admin' => 'admin#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
