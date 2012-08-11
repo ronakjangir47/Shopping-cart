@@ -1,0 +1,404 @@
+<! DOCTYPE HTML>
+<html>
+  <head>
+      <title>Jquery Air</title>
+
+      <style type="text/css">
+        #tabs
+        {
+          background-color: #E7E7E7;
+          width: 600px; 
+          padding: 10px 10px 5px 10px;
+          margin: 0 auto;
+        }
+        #tabs #head
+        {
+          background-color: #B0C4DE;
+          font-size: 32px;
+          color: #545454;
+          font-family: Andale Mono, monospace;
+          font-weight: bold;
+          padding: 5px;
+          width: 590px;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+        }
+        #content
+        {
+          background-color: #FFF5E6;
+          
+          line-height: 30px;
+          border: solid 1px white;
+        }
+        #content ul
+        {
+          padding: 0px;
+          margin: 0px;
+          border-bottom: solid;
+        }
+        #content ul li
+        {
+          display: inline;
+          padding: 0px;
+        }
+        #content ul li a 
+        {
+          text-decoration: none;
+          font-family: Andale Mono, monospace;
+          color: black;
+          display: inline-block;
+          width: 115px; 
+          text-align: center;
+        }
+        #content ul li a:hover
+        {
+          background-color: #B0C4DE;
+        }
+        .active
+        {
+          background-color: #F2F9FF;
+          border-top: solid 2px red;
+        }
+        .tooltip
+        {
+          display: block;
+          position: absolute;
+          margin-top: -65px;
+          margin-left: 3px;
+          line-height: 15px;
+          padding: 5px;
+          font-size: 12px;
+          text-align: center;
+          background-color: #AE6C4C;
+          padding: 5px 20px 5px 20px;
+          font-family: Andale Mono, monospace;
+          color: #FFF5E6;
+          font-weight: bold;
+          border: solid 3px #FFF5E6;
+        }
+        #blocks div table
+        {
+          width: 100%;
+          font-family: Andale Mono, monospace;
+        }
+        #blocks div table tr
+        {
+          height: 30px;
+        }
+        #blocks div table tr td,th
+        {
+          text-align: center;
+        }
+        #blocks div table tr:nth-child(odd)    
+        {
+          background-color:#DCDCDC; 
+        }
+        #blocks div table tr td a
+        {
+          display: block;
+          height: 29px;
+          line-height: 30px;
+        }
+        .selected
+        {
+          background-color: #E8CAA4;
+        }
+      </style>
+      <script src="jquery.js"></script>
+
+      <script type="text/javascript">
+        jQuery(function($){
+
+          function showFlights(active_div){
+            $('#blocks div').hide();
+            $(active_div).show();
+          }
+
+          function ChangeTabs(e){
+            e.preventDefault();
+            $('#nav li a.active').removeClass('active').click(ChangeTabs);
+            $(this).addClass('active').unbind("click", ChangeTabs);
+            showFlights($(this).attr("href"));
+          }
+
+          function showNumberOfFlights(e){
+            var num_flights = $(this).data("flights");
+            $(this).append("<span class='tooltip'>" + num_flights +" flights</span>");
+          }
+
+          function hideNumberOfFlights(e){
+            $('#tabs span.tooltip').remove();
+          }
+          $('#nav li a').bind({
+            click: ChangeTabs,
+            mouseenter: showNumberOfFlights,
+            mouseleave: hideNumberOfFlights
+          });
+          $('#nav li:eq(2) a').click();
+
+          function selectFlight(e){
+            e.preventDefault();
+            $('#blocks div table tr td a.selected').removeClass("selected");
+            $(this).addClass("selected");
+          }
+          $('#blocks div table tr td a').bind("click",selectFlight);
+
+        });
+      </script>
+
+  </head>
+  <body>
+    
+      <section id="tabs">
+          <div id="head">SELECT A FLIGHT</div>
+         <div id="content">
+          <ul id="nav">
+            <li><a  class="active" href="#2012-09-27" data-flights="6" >Sep 27</a></li>
+            <li><a href="#2012-09-28" data-flights="5" >Sep 28</a></li>
+            <li><a href="#2012-09-29" data-flights="5" >Sep 29</a></li>
+            <li><a href="#2012-09-30" data-flights="3" >Sep 30</a></li>
+            <li><a href="#2012-10-01" data-flights="3" >Oct 1</a></li>
+          </ul>
+          <div id="blocks" >
+            <div id="2012-09-27"> 
+              <table>
+                <tr>
+                  <th>DEPART</th>
+                  <th>ARRIVE</th>
+                  <th>FLIGHT#</th>
+                  <th>ROUTING</th>
+                  <th>FIRST CLASS</th>
+                  <th>ECONOMY</th>
+                </tr>
+                <tr>
+                  <td>1:35 PM</td>
+                  <td>2:15 PM</td>
+                  <td>1952</td>
+                  <td>2 stops</td>
+                  <td><a href="#">$220</a></td>
+                  <td><a href="#">$200</a></td>
+                </tr>
+                <tr>
+                  <td>3:15 PM</td>
+                  <td>3:15 PM</td>
+                  <td>1946</td>
+                  <td>2 stops</td>
+                  <td><a href="#">$276</a></td>
+                  <td><a href="#">$205</a></td>
+                </tr>
+                <tr>
+                  <td>4:45 PM</td>
+                  <td>5:15 PM</td>
+                  <td>1949</td>
+                  <td>1 stops</td>
+                  <td><a href="#">$210</a></td>
+                  <td><a href="#">$155</a></td>
+                </tr>
+                <tr>
+                  <td>6:35 PM</td>
+                  <td>7:40 PM</td>
+                  <td>1944</td>
+                  <td>3 stops</td>
+                  <td><a href="#">$351</a></td>
+                  <td><a href="#">$296</a></td>
+                </tr>
+                <tr>
+                  <td>10:15 PM</td>
+                  <td>11:05 PM</td>
+                  <td>1941</td>
+                  <td>3 stops</td>
+                  <td><a href="#">$210</a></td>
+                  <td><a href="#">$145</a></td>
+                </tr>
+                <tr>
+                  <td>11:15 PM</td>
+                  <td>00:15 AM</td>
+                  <td>1951</td>
+                  <td>1 stops</td>
+                  <td><a href="#">$256</a></td>
+                  <td><a href="#">$220</a></td>
+                </tr>
+              </table>
+            </div>
+            <div id="2012-09-28">
+              <table>
+                <tr>
+                  <th>DEPART</th>
+                  <th>ARRIVE</th>
+                  <th>FLIGHT#</th>
+                  <th>ROUTING</th>
+                  <th>FIRST CLASS</th>
+                  <th>ECONOMY</th>
+                </tr>
+                <tr>
+                  <td>11:35 AM</td>
+                  <td>2:10 PM</td>
+                  <td>1900</td>
+                  <td>5 stops</td>
+                  <td><a href="#">$1220</a></td>
+                  <td><a href="#">$1000</a></td>
+                </tr>
+                <tr>
+                  <td>1:15 PM</td>
+                  <td>3:55 PM</td>
+                  <td>1902</td>
+                  <td>6 stops</td>
+                  <td><a href="#">$776</a></td>
+                  <td><a href="#">$505</a></td>
+                </tr>
+                <tr>
+                  <td>4:45 PM</td>
+                  <td>5:15 PM</td>
+                  <td>1949</td>
+                  <td>1 stops</td>
+                  <td><a href="#">$210</a></td>
+                  <td><a href="#">$155</a></td>
+                </tr>
+                <tr>
+                  <td>6:35 PM</td>
+                  <td>7:40 PM</td>
+                  <td>1944</td>
+                  <td>3 stops</td>
+                  <td><a href="#">$351</a></td>
+                  <td><a href="#">$296</a></td>
+                </tr>
+                <tr>
+                  <td>10:15 PM</td>
+                  <td>11:05 PM</td>
+                  <td>1941</td>
+                  <td>3 stops</td>
+                  <td><a href="#">$210</a></td>
+                  <td><a href="#">$145</a></td>
+                </tr>
+              </table>
+            </div>
+            <div id="2012-09-29">
+              <table>
+                <tr>
+                  <th>DEPART</th>
+                  <th>ARRIVE</th>
+                  <th>FLIGHT#</th>
+                  <th>ROUTING</th>
+                  <th>FIRST CLASS</th>
+                  <th>ECONOMY</th>
+                </tr>
+                <tr>
+                  <td>1:35 PM</td>
+                  <td>2:15 PM</td>
+                  <td>1952</td>
+                  <td>2 stops</td>
+                  <td><a href="#">$220</a></td>
+                  <td><a href="#">$200</a></td>
+                </tr>
+                <tr>
+                  <td>3:15 PM</td>
+                  <td>3:15 PM</td>
+                  <td>1946</td>
+                  <td>2 stops</td>
+                  <td><a href="#">$276</a></td>
+                  <td><a href="#">$205</a></td>
+                </tr>
+                <tr>
+                  <td>4:45 PM</td>
+                  <td>5:15 PM</td>
+                  <td>1949</td>
+                  <td>1 stops</td>
+                  <td><a href="#">$210</a></td>
+                  <td><a href="#">$155</a></td>
+                </tr>
+                <tr>
+                  <td>6:35 PM</td>
+                  <td>7:40 PM</td>
+                  <td>1944</td>
+                  <td>3 stops</td>
+                  <td><a href="#">$351</a></td>
+                  <td><a href="#">$296</a></td>
+                </tr>
+                <tr>
+                  <td>10:15 PM</td>
+                  <td>11:05 PM</td>
+                  <td>1941</td>
+                  <td>3 stops</td>
+                  <td><a href="#">$210</a></td>
+                  <td><a href="#">$145</a></td>
+                </tr>
+              </table>
+            </div>
+            <div id="2012-09-30">
+              <table>
+                <tr>
+                  <th>DEPART</th>
+                  <th>ARRIVE</th>
+                  <th>FLIGHT#</th>
+                  <th>ROUTING</th>
+                  <th>FIRST CLASS</th>
+                  <th>ECONOMY</th>
+                </tr>
+                <tr>
+                  <td>11:35 AM</td>
+                  <td>3:05 PM</td>
+                  <td>1935</td>
+                  <td>7 stops</td>
+                  <td><a href="#">$720</a></td>
+                  <td><a href="#">$600</a></td>
+                </tr>
+                <tr>
+                  <td>3:15 PM</td>
+                  <td>3:15 PM</td>
+                  <td>1946</td>
+                  <td>2 stops</td>
+                  <td><a href="#">$276</a></td>
+                  <td><a href="#">$205</a></td>
+                </tr>
+                <tr>
+                  <td>4:45 PM</td>
+                  <td>5:15 PM</td>
+                  <td>1949</td>
+                  <td>1 stops</td>
+                  <td><a href="#">$210</a></td>
+                  <td><a href="#">$155</a></td>
+                </tr>
+              </table>
+            </div>
+            <div id="2012-10-01">
+              <table>
+                <tr>
+                  <th>DEPART</th>
+                  <th>ARRIVE</th>
+                  <th>FLIGHT#</th>
+                  <th>ROUTING</th>
+                  <th>FIRST CLASS</th>
+                  <th>ECONOMY</th>
+                </tr>
+                <tr>
+                  <td>1:05 PM</td>
+                  <td>2:55 PM</td>
+                  <td>1942</td>
+                  <td>4 stops</td>
+                  <td><a href="#">$320</a></td>
+                  <td><a href="#">$250</a></td>
+                </tr>
+                <tr>
+                  <td>3:15 PM</td>
+                  <td>3:15 PM</td>
+                  <td>1946</td>
+                  <td>2 stops</td>
+                  <td><a href="#">$276</a></td>
+                  <td><a href="#">$205</a></td>
+                </tr>
+                <tr>
+                  <td>4:45 PM</td>
+                  <td>5:15 PM</td>
+                  <td>1949</td>
+                  <td>1 stops</td>
+                  <td><a href="#">$210</a></td>
+                  <td><a href="#">$155</a></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div>
+  </body>
+</html>
